@@ -1,0 +1,210 @@
+{
+  "title": "Batch Geocode input",
+  "description": "Forward-geocode addresses and/or reverse-geocode coordinates through the OFFICIAL Google Geocoding, Mapbox Geocoding or HERE Geocoding & Search API. Bring your own provider key — without one nothing is sent and every row is free (missing_key).",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "addresses": {
+      "title": "Addresses (forward geocode)",
+      "type": "array",
+      "description": "One address per line, e.g. '1600 Amphitheatre Pkwy, Mountain View, CA'. Duplicates (case-insensitive) are removed.",
+      "editor": "stringList",
+      "prefill": [
+        "Brandenburger Tor, Pariser Platz, 10117 Berlin",
+        "350 Fifth Avenue, New York, NY 10118"
+      ],
+      "sectionCaption": "Inputs"
+    },
+    "coordinates": {
+      "title": "Coordinates (reverse geocode)",
+      "type": "array",
+      "description": "Optional. Array of \"lat,lng\" strings or {\"lat\": 52.5163, \"lng\": 13.3777} objects. Out-of-range or malformed values become free invalid_input rows.",
+      "editor": "json",
+      "sectionCaption": "Inputs"
+    },
+    "datasetId": {
+      "title": "Dataset ID (address list)",
+      "type": "string",
+      "description": "Optional. Read addresses from another Actor's dataset. Uses the field set in 'Address field', else address / fullAddress / query / location / formattedAddress; rows with lat+lng (or latitude+longitude) and no address are reverse-geocoded.",
+      "editor": "textfield",
+      "sectionCaption": "Inputs"
+    },
+    "keyValueStoreId": {
+      "title": "Key-value store ID (address list)",
+      "type": "string",
+      "description": "Optional. Read addresses from a key-value record: JSON array, {\"addresses\": [...], \"coordinates\": [...]}, or plain text with one address per line.",
+      "editor": "textfield",
+      "sectionCaption": "Inputs"
+    },
+    "keyValueRecordKey": {
+      "title": "Key-value record key",
+      "type": "string",
+      "description": "Record key inside the key-value store (default INPUT_ADDRESSES).",
+      "editor": "textfield",
+      "default": "INPUT_ADDRESSES",
+      "sectionCaption": "Inputs"
+    },
+    "addressField": {
+      "title": "Address field (dataset / JSON objects)",
+      "type": "string",
+      "description": "Optional. Name of the field holding the address in dataset items or JSON objects.",
+      "editor": "textfield",
+      "sectionCaption": "Inputs"
+    },
+    "provider": {
+      "title": "Provider",
+      "type": "string",
+      "description": "Which official geocoding API to call with your key.",
+      "editor": "select",
+      "enum": [
+        "google",
+        "mapbox",
+        "here"
+      ],
+      "enumTitles": [
+        "Google Geocoding API",
+        "Mapbox Geocoding v5",
+        "HERE Geocoding & Search v7"
+      ],
+      "default": "google",
+      "sectionCaption": "Provider & key"
+    },
+    "apiKey": {
+      "title": "Provider API key (required)",
+      "type": "string",
+      "description": "Google: Maps Platform API key with the Geocoding API enabled (+ billing). Mapbox: access token. HERE: REST API key. Stored encrypted and never logged or written to output. WITHOUT a key nothing is sent and rows are failed + free (missing_key).",
+      "editor": "textfield",
+      "isSecret": true,
+      "sectionCaption": "Provider & key"
+    },
+    "language": {
+      "title": "Result language",
+      "type": "string",
+      "description": "Optional language code for results, e.g. en, de, zh-TW (Google `language`, Mapbox `language`, HERE `lang`).",
+      "editor": "textfield",
+      "sectionCaption": "Provider & key"
+    },
+    "region": {
+      "title": "Region bias (Google)",
+      "type": "string",
+      "description": "Optional ccTLD region bias for Google forward geocoding, e.g. uk, de, tw.",
+      "editor": "textfield",
+      "sectionCaption": "Provider & key"
+    },
+    "mapboxCountry": {
+      "title": "Country filter (Mapbox)",
+      "type": "string",
+      "description": "Optional comma-separated ISO 3166-1 alpha-2 codes for Mapbox, e.g. us,ca.",
+      "editor": "textfield",
+      "sectionCaption": "Provider & key"
+    },
+    "limit": {
+      "title": "Results per address",
+      "type": "integer",
+      "description": "Best match goes into the row; extra matches are added to `alternatives` (no extra charge).",
+      "default": 1,
+      "minimum": 1,
+      "maximum": 10,
+      "sectionCaption": "Provider & key"
+    },
+    "enableDistanceMatrix": {
+      "title": "Enable Distance Matrix (Google only)",
+      "type": "boolean",
+      "description": "Also compute origin × destination distance/duration with the Google Distance Matrix API (your key must have that API enabled). Results go to the MATRIX record and REPORT.md; each OK element is a matrix-element event.",
+      "default": false,
+      "sectionCaption": "Distance Matrix (optional)"
+    },
+    "origins": {
+      "title": "Origins",
+      "type": "array",
+      "description": "Addresses or 'lat,lng' strings.",
+      "editor": "stringList",
+      "sectionCaption": "Distance Matrix (optional)"
+    },
+    "destinations": {
+      "title": "Destinations",
+      "type": "array",
+      "description": "Addresses or 'lat,lng' strings.",
+      "editor": "stringList",
+      "sectionCaption": "Distance Matrix (optional)"
+    },
+    "travelMode": {
+      "title": "Travel mode",
+      "type": "string",
+      "description": "Distance Matrix travel mode.",
+      "editor": "select",
+      "enum": [
+        "driving",
+        "walking",
+        "bicycling",
+        "transit"
+      ],
+      "default": "driving",
+      "sectionCaption": "Distance Matrix (optional)"
+    },
+    "units": {
+      "title": "Units",
+      "type": "string",
+      "description": "Text units for distances (values are always meters / seconds).",
+      "editor": "select",
+      "enum": [
+        "metric",
+        "imperial"
+      ],
+      "default": "metric",
+      "sectionCaption": "Distance Matrix (optional)"
+    },
+    "maxMatrixElements": {
+      "title": "Max matrix elements",
+      "type": "integer",
+      "description": "Cap on origins × destinations (requests are chunked within Google's 25×25 / 100-element limits).",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 2500,
+      "sectionCaption": "Distance Matrix (optional)"
+    },
+    "maxAddresses": {
+      "title": "Max addresses",
+      "type": "integer",
+      "description": "Stop after this many inputs (addresses + coordinates). 0 = no limit.",
+      "default": 100,
+      "minimum": 0,
+      "maximum": 100000,
+      "sectionCaption": "Limits"
+    },
+    "maxConcurrency": {
+      "title": "Max concurrency",
+      "type": "integer",
+      "description": "Parallel provider requests.",
+      "default": 2,
+      "minimum": 1,
+      "maximum": 5,
+      "sectionCaption": "Limits"
+    },
+    "maxRetries": {
+      "title": "Max retries",
+      "type": "integer",
+      "description": "Retries for 429 / OVER_QUERY_LIMIT (honours Retry-After), 5xx / UNKNOWN_ERROR and timeouts with exponential backoff. 401/403/REQUEST_DENIED/ZERO_RESULTS are not retried.",
+      "default": 3,
+      "minimum": 0,
+      "maximum": 6,
+      "sectionCaption": "Limits"
+    },
+    "requestTimeoutSecs": {
+      "title": "Request timeout (seconds)",
+      "type": "integer",
+      "default": 30,
+      "description": "Timeout per provider request.",
+      "minimum": 5,
+      "maximum": 120,
+      "sectionCaption": "Limits"
+    },
+    "stopOnAuthError": {
+      "title": "Stop on rejected key",
+      "type": "boolean",
+      "description": "After the provider rejects the key (REQUEST_DENIED / 401 / 403 / OVER_DAILY_LIMIT), mark the remaining inputs as failed without sending them (saves your quota). All free.",
+      "default": true,
+      "sectionCaption": "Limits"
+    }
+  }
+}

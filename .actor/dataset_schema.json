@@ -1,0 +1,125 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "transformation": {
+        "fields": [
+          "input",
+          "inputType",
+          "status",
+          "lat",
+          "lng",
+          "formattedAddress",
+          "locationType",
+          "confidence",
+          "providerId",
+          "errorClass"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "input": {
+            "label": "Input",
+            "format": "text"
+          },
+          "inputType": {
+            "label": "Type",
+            "format": "text"
+          },
+          "status": {
+            "label": "Result",
+            "format": "text"
+          },
+          "lat": {
+            "label": "Lat",
+            "format": "number"
+          },
+          "lng": {
+            "label": "Lng",
+            "format": "number"
+          },
+          "formattedAddress": {
+            "label": "Formatted address",
+            "format": "text"
+          },
+          "locationType": {
+            "label": "Location type",
+            "format": "text"
+          },
+          "confidence": {
+            "label": "Confidence",
+            "format": "number"
+          },
+          "providerId": {
+            "label": "Provider ID",
+            "format": "text"
+          },
+          "errorClass": {
+            "label": "Error",
+            "format": "text"
+          }
+        }
+      }
+    },
+    "failed": {
+      "title": "Failed (not charged)",
+      "transformation": {
+        "fields": [
+          "input",
+          "inputType",
+          "provider",
+          "errorClass",
+          "providerStatus",
+          "httpStatus",
+          "attempts",
+          "errorMessage",
+          "hint"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "input": {
+            "label": "Input",
+            "format": "text"
+          },
+          "inputType": {
+            "label": "Type",
+            "format": "text"
+          },
+          "provider": {
+            "label": "Provider",
+            "format": "text"
+          },
+          "errorClass": {
+            "label": "Error",
+            "format": "text"
+          },
+          "providerStatus": {
+            "label": "Provider status",
+            "format": "text"
+          },
+          "httpStatus": {
+            "label": "HTTP",
+            "format": "number"
+          },
+          "attempts": {
+            "label": "Attempts",
+            "format": "number"
+          },
+          "errorMessage": {
+            "label": "Message",
+            "format": "text"
+          },
+          "hint": {
+            "label": "Hint",
+            "format": "text"
+          }
+        }
+      }
+    }
+  }
+}

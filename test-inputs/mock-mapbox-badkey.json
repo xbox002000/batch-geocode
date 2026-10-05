@@ -1,0 +1,7 @@
+{
+  "provider": "mapbox",
+  "apiKey": "WRONG_KEY",
+  "addresses": ["350 Fifth Avenue, New York", "Brandenburger Tor, Berlin", "Tokyo Tower"],
+  "maxConcurrency": 1,
+  "maxRetries": 0
+}

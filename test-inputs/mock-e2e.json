@@ -1,0 +1,8 @@
+{
+  "provider": "google",
+  "apiKey": "TEST_KEY",
+  "addresses": ["Brandenburger Tor, Pariser Platz, 10117 Berlin", "nowhere 99999 imaginary street"],
+  "maxConcurrency": 1,
+  "maxRetries": 1,
+  "requestTimeoutSecs": 10
+}

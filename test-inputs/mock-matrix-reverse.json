@@ -1,0 +1,11 @@
+{
+  "provider": "google",
+  "apiKey": "TEST_KEY",
+  "addresses": ["Brandenburger Tor, Berlin"],
+  "coordinates": ["52.5163,13.3777", {"lat": 40.7484, "lng": -73.9857}, "999,1"],
+  "enableDistanceMatrix": true,
+  "origins": ["Berlin"],
+  "destinations": ["Hamburg", "Atlantis"],
+  "maxConcurrency": 2,
+  "maxRetries": 0
+}

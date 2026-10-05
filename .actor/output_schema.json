@@ -1,0 +1,37 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Batch Geocode output",
+  "description": "One dataset row per address/coordinate, plus REPORT.md, GEOJSON, SUMMARY (and MATRIX when Distance Matrix is enabled) in the default key-value store.",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "Geocode results",
+      "description": "Dataset rows: input, provider, status, lat, lng, formattedAddress, locationType, accuracy, providerId, components, confidence, errorClass, hint.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
+    },
+    "geojson": {
+      "type": "string",
+      "title": "GeoJSON FeatureCollection (GEOJSON)",
+      "description": "Successful points as GeoJSON Point features.",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/GEOJSON"
+    },
+    "reportMarkdown": {
+      "type": "string",
+      "title": "Markdown report (REPORT.md)",
+      "description": "Summary counts, result table, failure hints and how to get a key.",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/REPORT.md"
+    },
+    "summary": {
+      "type": "string",
+      "title": "Run summary (SUMMARY)",
+      "description": "ok, failed, byClass, apiKeyProvided, charged, durationSecs, peakMemoryMb.",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/SUMMARY"
+    },
+    "matrix": {
+      "type": "string",
+      "title": "Distance Matrix (MATRIX)",
+      "description": "Only when enableDistanceMatrix is on: origin, destination, distanceMeters, durationSecs, status.",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/MATRIX"
+    }
+  }
+}

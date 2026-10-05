@@ -1,0 +1,18 @@
+{
+    "apify-actor-start": {
+        "eventTitle": "Actor start",
+        "eventDescription": "Charged once per run (Apify synthetic start event; priced per GB of run memory, 1 GB minimum). About $0.001 for a default 256 MB run.",
+        "eventPriceUsd": 0.001
+    },
+    "geocode-result": {
+        "eventTitle": "Geocode result",
+        "eventDescription": "Charged once per SUCCESSFUL forward (address → lat/lng) or reverse (lat/lng → address) geocode returned by your provider and saved to the dataset. Alternatives (limit > 1) are included at no extra cost. Not charged: missing key, REQUEST_DENIED / 401 / 403, 429 after retries, ZERO_RESULTS / not found, invalid input, timeouts.",
+        "eventPriceUsd": 0.002,
+        "isPrimaryEvent": true
+    },
+    "matrix-element": {
+        "eventTitle": "Distance Matrix element",
+        "eventDescription": "Optional. Charged once per SUCCESSFUL Google Distance Matrix origin→destination element (status OK) when enableDistanceMatrix is on. Elements with NOT_FOUND / ZERO_RESULTS or failed requests are free.",
+        "eventPriceUsd": 0.004
+    }
+}

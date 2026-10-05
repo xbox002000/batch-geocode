@@ -1,0 +1,28 @@
+{
+  "actorSpecification": 1,
+  "name": "batch-geocode",
+  "title": "Batch Geocode — Google / Mapbox / HERE → GeoJSON",
+  "description": "Batch forward & reverse geocoding via the official Google Geocoding, Mapbox and HERE APIs (bring your own key). Lat/lng, formatted address, components, accuracy; GeoJSON + Markdown report; optional Distance Matrix. No Maps scraping. 256 MB. Not-found & failed rows free.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "minMemoryMbytes": 128,
+  "maxMemoryMbytes": 1024,
+  "defaultRunOptions": {
+    "build": "latest",
+    "memoryMbytes": 256,
+    "timeoutSecs": 3600
+  },
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md",
+  "changelog": "../CHANGELOG.md",
+  "categories": [
+    "DEVELOPER_TOOLS",
+    "AUTOMATION",
+    "TRAVEL"
+  ]
+}

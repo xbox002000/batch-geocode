@@ -1,0 +1,6 @@
+{
+  "provider": "google",
+  "addresses": ["Brandenburger Tor, Pariser Platz, 10117 Berlin"],
+  "maxConcurrency": 1,
+  "maxRetries": 0
+}
